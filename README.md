@@ -52,3 +52,9 @@ Optamos pela fusão das duas metodologias para obter o máximo de eficiência na
 * **Baixa Prioridade:** Personalização de avatar, Ranking educativo e Notificações push para os pais.
 
 ---
+## Documentação
+
+- [Documento de Requisitos](docs/requisitos/requisitos.md)
+- Histórias de usuário
+- Critérios de aceitação
+- Requisitos funcionais e não funcionais
