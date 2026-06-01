@@ -27,7 +27,7 @@ Como o nosso time é enxuto, todos os integrantes atuam diretamente no desenvolv
 * **Foco Técnico:** Desenvolvedor Back-end & QA (Garantia de Qualidade)
 * **Responsabilidades:** Manter o quadro Kanban atualizado; garantir o cumprimento das Sprints de 2 semanas; remover impedimentos da equipe; atuar na lógica de programação e testes de funcionalidades.
 
-### 👩‍💻 Nivea Avelino
+### 👩‍💻 Nicolas Avelino
 * **Papel de Gestão:** Lead Developer (Líder Técnico)
 * **Foco Técnico:** Desenvolvedor Back-end & QA (Garantia de Qualidade)
 * **Responsabilidades:** Garantir a integração das funcionalidades do sistema; modelar a estrutura do banco de dados e segurança de login; validar o funcionamento crítico do Timer SBP e a estabilidade da plataforma.
