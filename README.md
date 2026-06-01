@@ -52,4 +52,3 @@ Optamos pela fusão das duas metodologias para obter o máximo de eficiência na
 * **Baixa Prioridade:** Personalização de avatar, Ranking educativo e Notificações push para os pais.
 
 ---
-*Para consultar o detalhamento completo dos requisitos, histórias de usuário e cenários de teste BDD, acesse o diretório:* [docs/requisitos/requisitos/requisitos.md](./docs/requisitos/requisitos/requisitos.md).
