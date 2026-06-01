@@ -1,15 +1,15 @@
-# 🎮 Plataforma Gamificada de Aprendizado Ativo
+# 🎮 EducaPlay: Plataforma Gamificada de Aprendizado Ativo
 
-Bem-vindo ao repositório oficial da nossa plataforma gamificada voltada para **Alfabetização, Matemática e Cidadania**. Este projeto foi desenvolvido como parte prática da disciplina de Processo de Desenvolvimento de Software (PDS).
+Bem-vindo ao repositório oficial da **EducaPlay**, uma plataforma gamificada voltada para **Alfabetização, Matemática e Cidadania**. Este projeto foi desenvolvido como parte prática da disciplina de Processo de Desenvolvimento de Software (PDS).
 
 ---
 
 ## 🛑 O Problema
 Atualmente, as crianças fazem o uso excessivo de telas, frequentemente ultrapassando o limite de 1h a 2h recomendado pela **Sociedade Brasileira de Pediatria (SBP)**. Esse consumo digital exagerado e passivo causa impactos negativos no desenvolvimento cognitivo, como dificuldades no vocabulário, raciocínio lógico e aprendizagem. 
-Devido à correria diária, muitos pais utilizam os dispositivos como apoio na rotina, mas carecem de ferramentas com conteúdos seguros, ativos e genuinamente educativos.
+Devido à correria diária, many pais utilizam os dispositivos como apoio na rotina, mas carecem de ferramentas com conteúdos seguros, ativos e genuinamente educativos.
 
 ## 💡 A Proposta
-Desenvolver uma plataforma gamificada (App/Web) interativa. Em vez de apenas "entreter", transformamos o tempo de tela em um ambiente de **aprendizado ativo**, atuando como uma ferramenta de auxílio direto para os pais que buscam introduzir rotinas pedagógicas saudáveis para seus filhos.
+A **EducaPlay** surge como uma plataforma gamificada (App/Web) interativa. Em vez de apenas "entreter", transformamos o tempo de tela em um ambiente de **aprendizado ativo**, atuando como uma ferramenta de auxílio direto para os pais que buscam introduzir rotinas pedagógicas saudáveis para seus filhos.
 
 ---
 
@@ -20,7 +20,7 @@ Como o nosso time é enxuto, todos os integrantes atuam diretamente no desenvolv
 ### 👩‍💻 Geyza Gonçalves
 * **Papel de Gestão:** Product Owner (PO)
 * **Foco Técnico:** Desenvolvedor Front-end & UI/UX
-* **Responsabilidades:** Definir as prioridades do Backlog; garantir o valor pedagógico real dos jogos e trilhas; desenhar a interface visual lúdica e focar na experiência do usuário infantil.
+* **Responsabilidades:** Definir as prioridades do Backlog; garantir o valor pedagógico real dos jogos e trilhas da EducaPlay; desenhar a interface visual lúdica e focar na experiência do usuário infantil.
 
 ### 👩‍💻 Ana Flávia Moisés
 * **Papel de Gestão:** Scrum Master
@@ -30,7 +30,7 @@ Como o nosso time é enxuto, todos os integrantes atuam diretamente no desenvolv
 ### 👩‍💻 Nicolas Avelino
 * **Papel de Gestão:** Lead Developer (Líder Técnico)
 * **Foco Técnico:** Desenvolvedor Back-end & QA (Garantia de Qualidade)
-* **Responsabilidades:** Garantir a integração das funcionalidades do sistema; modelar a estrutura do banco de dados e segurança de login; validar o funcionamento crítico do Timer SBP e a estabilidade da plataforma.
+* **Responsabilidades:** Garantir a integração das funcionalidades do sistema da EducaPlay; modelar a estrutura do banco de dados e segurança de login; validar o funcionamento crítico do Timer SBP e a estabilidade geral da plataforma.
 
 ---
 
@@ -45,16 +45,19 @@ Optamos pela fusão das duas metodologias para obter o máximo de eficiência na
 
 ---
 
-## 📋 Resumo do Backlog Inicial
+## 📋 Resumo do Backlog Inicial da EducaPlay
 
 * **Alta Prioridade (MVP):** Cadastro de perfis, Sistema de login seguro, Jogos de Alfabetização (letras, fonemas e formação de palavras), Jogos de Matemática (contagem e desafios lúdicos), **Sistema de Gestão de Tempo (Timer integrado SBP)**, Trilha da Cidadania e Painel do Responsável.
 * **Média Prioridade:** Sistema de pontuação/recompensas, Relatórios de desempenho, Efeitos sonoros/animações educativas e Níveis de dificuldade.
 * **Baixa Prioridade:** Personalização de avatar, Ranking educativo e Notificações push para os pais.
 
 ---
-## Documentação
 
-- [Documento de Requisitos](docs/requisitos/requisitos.md)
-- Histórias de usuário
-- Critérios de aceitação
-- Requisitos funcionais e não funcionais
+## 📑 Documentação
+
+Para consultar o detalhamento completo da Engenharia de Requisitos da plataforma EducaPlay, acesse o nosso documento oficial:
+
+* 📄 [**Documento de Especificação de Requisitos**](docs/requisitos/requisitos.md)
+  * **Histórias de Usuário:** Mapeamento de perfis e necessidades divididas por prioridades (*User Stories*).
+  * **Critérios de Aceitação:** Cenários de validação detalhados no formato BDD (*Dado / Quando / Então*).
+  * **Requisitos Funcionais (RF) e Não Funcionais (RNF):** Especificações técnicas e de negócio da plataforma.
