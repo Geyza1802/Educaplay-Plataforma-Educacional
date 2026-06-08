@@ -1,52 +1,76 @@
 # 🎮 EducaPlay: Plataforma Gamificada de Aprendizado Ativo
 
-Bem-vindo ao repositório oficial da **EducaPlay**, uma plataforma gamificada voltada para **Alfabetização, Matemática e Cidadania**. Este projeto foi idealizado e desenvolvido como Trabalho de Conclusão de Curso (TCC).
+
+Bem-vindo ao repositório oficial da **EducaPlay**, uma plataforma gamificada (App/Web) interativa voltada para áreas fundamentais do desenvolvimento infantil: **Alfabetização, Matemática e Cidadania**.
 
 ---
 
 ## 🛑 O Problema
-Atualmente, as crianças fazem o uso excessivo de telas, frequentemente ultrapassando o limite de 1h a 2h recomendado pela **Sociedade Brasileira de Pediatria (SBP)**. Esse consumo digital exagerado e passivo causa impactos negativos no desenvolvimento cognitivo, como dificuldades no vocabulário, raciocínio lógico e aprendizagem. 
-Devido à correria diária, muitos pais utilizam os dispositivos como apoio na rotina, mas carecem de ferramentas com conteúdos seguros, ativos e genuinamente educativos.
+Atualmente, as crianças infelizmente fazem o uso excessivo de telas, frequentemente ultrapassando o limite de 1h a 2h recomendado pela **Sociedade Brasileira de Pediatria (SBP)**. Esse consumo digital exagerado e passivo causa impactos negativos no desenvolvimento cognitivo, como dificuldades no vocabulário, raciocínio lógico e aprendizagem. 
+
+Devido à correria do dia a dia, muitos pais utilizam as telas como apoio na rotina. Porém, grande parte dos conteúdos consumidos é passiva, pouco educativa e prejudicial ao desenvolvimento infantil.
 
 ## 💡 A Proposta
-A **EducaPlay** surge como uma plataforma gamificada (App/Web) interativa. Em vez de apenas "entreter", transformamos o tempo de tela em um ambiente de **aprendizado ativo**, atuando como uma ferramenta de auxílio direto para os pais que buscam introduzir rotinas pedagógicas saudáveis para seus filhos.
+A **EducaPlay** surge como uma alternativa pedagógica saudável. Em vez de apenas “entreter”, transformamos o tempo de tela em um ambiente de **aprendizado ativo**, atuando como uma ferramenta de auxílio direto para os pais que precisam de conteúdo seguro, controlado e genuinamente educativo para seus filhos.
 
 ---
 
-## 👥 Desenvolvimento Autônomo e Multidisciplinar
-Por se tratar de um projeto de execução individual, todas as etapas do ciclo de vida do software foram assumidas de forma centralizada pelo desenvolvedor, exigindo uma atuação multidisciplinar e a divisão lógica de competências em Engenharia de Software:
+## 🛠️ Metodologia Escolhida: Scrum + Kanban
 
-*   **Engenharia de Requisitos & Concepção Pedagógica:** Responsável pela idealização do valor educativo dos jogos, curadoria das trilhas da EducaPlay, modelagem do backlog e escrita dos critérios de aceitação no formato BDD.
-*   **Design de Interface (UI/UX) & Front-end:** Foco na criação de uma interface visual lúdica, responsiva e adaptada para o uso de crianças pequenas (infância básica), além do desenvolvimento das interações visuais.
-*   **Desenvolvimento Back-end & Testes (QA):** Arquitetura lógica do sistema, estrutura do banco de dados para salvamento de progresso, implementação de regras de negócio (como a restrição do PIN de segurança) e validação técnica do algoritmo crítico do Timer SBP.
+Para viabilizar o gerenciamento e a entrega sistemática do software dentro do calendário acadêmico, adotou-se uma abordagem híbrida de metodologias ágeis:
+
+### 🔄 Scrum
+* **Sprints Conclusivas:** O projeto será desenvolvido em etapas curtas (Sprints/Ciclos de 2 semanas) para garantir entregas incrementais estáveis.
+* **Flexibilidade:** Permite adaptação rápida às necessidades coletivas e dos usuários.
+* **Acompanhamento:** Facilita o planejamento rigoroso e o monitoramento macro do progresso.
+
+### 📋 Kanban
+* **Visualização de Tarefas:** Mapeamento explícito de todo o fluxo de trabalho através de colunas visuais.
+* **Fluxo Contínuo:** Divisão transparente de atividades classificadas como *Pistas/A Fazer (To Do)*, *Em Andamento (Doing)* e *Concluídas (Done)*.
+
+> **Justificativa da Combinação:**
+> A junção Scrum + Kanban foi escolhida estrategicamente porque o Scrum estrutura o ritmo de planejamento e controle das entregas por ciclo, enquanto o Kanban otimiza o fluxo diário, melhorando a visibilidade e mitigando gargalos. Juntas, as metodologias aumentam a produtividade, a comunicação interna e a flexibilidade operacional da equipe.
 
 ---
 
-## 🛠️ Metodologia Adaptada: Gestão Ágil Solo (Kanban)
+## 👥 Organização da Equipe e Divisão de Papéis
 
-Para viabilizar a entrega sistemática do MVP sem o suporte de uma equipe, adaptou-se a filosofia ágil para o gerenciamento de tarefas solo:
+A equipe distribui suas competências multidisciplinares de Engenharia de Software da seguinte forma:
 
-*   **Fluxo Incremental:** O cronograma de desenvolvimento foi quebrado em ciclos lógicos de produção, focando primeiro no núcleo funcional do sistema (alta prioridade) para posterior expansão das mecânicas lúdicas secundárias.
-*   **Quadro Visual (Kanban):** Utilizado como ferramenta central de auto-organização e controle do fluxo contínuo de trabalho. A segmentação visual de atividades pendentes, em execução e validadas mitigou o risco de gargalos no desenvolvimento e auxiliou no monitoramento de prazos acadêmicos.
+### 👑 Geyza Gonçalves
+* **Papel de Gestão:** Product Owner (PO)
+  * Responsável por definir as prioridades do Backlog, organizar as funcionalidades mais importantes do sistema e garantir que os jogos (Alfabetização, Matemática e Cidadania) possuam valor educativo real.
+* **Foco Técnico:** Desenvolvedor Front-end & UI/UX
+  * Criação do conteúdo pedagógico do aplicativo, design de interface, organização visual da plataforma e otimização da experiência do usuário.
 
-> **Justificativa da Abordagem:** A centralização do desenvolvimento exige uma gerência rígida do tempo. A disciplina do controle visual do Kanban impede a dispersão do foco individual, garantindo que o tempo de desenvolvimento seja investido nas funcionalidades que agregam maior valor pedagógico e estabilidade à plataforma.
+### 🔄 Ana Flávia Moisés
+* **Papel de Gestão:** Scrum Master
+  * Responsável por manter o quadro Kanban atualizado, garantir o cumprimento das Sprints de 2 semanas, resolver impedimentos durante o desenvolvimento e auxiliar nos testes de validação.
+* **Foco Técnico:** Desenvolvedor Back-end & QA
+  * Implementação da lógica de programação estrutural, integração completa entre o sistema e o banco de dados, testes funcionais e controle de qualidade.
 
+### 💻 Nicolas Avelino
+* **Papel de Gestão:** Lead Developer (Líder Técnico)
+  * Responsável por garantir a estabilidade técnica e integração das funcionalidades, realizar rotinas de testes integrados e assegurar o pleno funcionamento do algoritmo do Timer SBP.
+* **Foco Técnico:** Desenvolvedor Back-end & QA
+  * Arquitetura e modelagem do banco de dados, segurança de login, integração de sons/animações e garantia de qualidade (QA) geral da plataforma antes de entregas finais.
 
 ---
 
 ## 📋 Resumo do Backlog Inicial da EducaPlay
 
-* **Alta Prioridade (MVP):** Cadastro de perfis, Sistema de login seguro, Jogos de Alfabetização (letras, fonemas e formação de palavras), Jogos de Matemática (contagem e desafios lúdicos), **Sistema de Gestão de Tempo (Timer integrado SBP)**, Trilha da Cidadania e Painel do Responsável.
-* **Média Prioridade:** Sistema de pontuação/recompensas, Relatórios de desempenho, Efeitos sonoros/animações educativas e Níveis de dificuldade.
-* **Baixa Prioridade:** Personalização de avatar, Ranking educativo e Notificações push para os pais.
-
----
-
-## 📑 Documentação
-
-Para consultar o detalhamento completo da Engenharia de Requisitos da plataforma EducaPlay, acesse o nosso documento oficial:
-
-* 📄 [**Documento de Especificação de Requisitos**](docs/requisitos/requisitos.md)
-  * **Histórias de Usuário:** Mapeamento de perfis e necessidades divididas por prioridades (*User Stories*).
-  * **Critérios de Aceitação:** Cenários de validação detalhados no formato BDD (*Dado / Quando / Então*).
-  * **Requisitos Funcionais (RF) e Não Funcionais (RNF):** Especificações técnicas e de negócio da plataforma.
+| Prioridade | Módulo / Funcionalidade | Descrição Técnica e Pedagógica |
+| :---: | :--- | :--- |
+| **Alta (MVP)** | 🔐 Acesso Seguro | Cadastro e sistema de login blindado para pais e perfis infantis. |
+| **Alta (MVP)** | 🔤 Alfabetização | Jogos de reconhecimento de letras, fonemas, vogais, consoantes e formação progressiva de palavras e frases. |
+| **Alta (MVP)** | 🔢 Matemática | Desafios lúdicos envolvendo contagem e testes de raciocínio lógico baseados nas 4 operações fundamentais. |
+| **Alta (MVP)** | ⏱️ Timer SBP | **Sistema de gestão de tempo integrado** que bloqueia o app ou emite alertas ao fim do tempo diário estipulado. |
+| **Alta (MVP)** | 🌍 Trilha da Cidadania | Mini-histórias interativas focadas em dilemas de ética e preservação do meio-ambiente. |
+| **Alta (MVP)** | 📊 Área do Responsável | Painel simples para os pais monitorarem o tempo exato de uso e o progresso escolar da criança. |
+| **Média** | ⭐ Gamificação | Sistema de pontuação imediata e recebimento de recompensas em missões. |
+| **Média** | 📈 Relatórios Avançados | Dashboards detalhados de desempenho para acompanhamento pedagógico. |
+| **Média** | 🎨 Multimídia | Inclusão de efeitos sonoros imersivos e animações com intuitos educativos. |
+| **Média** | 📈 Níveis de Dificuldade | Adaptação automática ou manual da complexidade dos desafios dos jogos. |
+| **Baixa** | 🎭 Customização | Customização cosmética e personalização de um avatar infantil do usuário. |
+| **Baixa** | 🏆 Ranking Educativo | Competições amigáveis e rankings focados em objetivos pedagógicos. |
+| **Baixa** | 🔔 Notificações | Avisos rápidos de lembretes e relatórios de progresso via notificações push para os pais. |
