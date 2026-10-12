@@ -35,8 +35,4 @@
 
 ---
 
-## 🚀 Como Executar o Projeto Localmente
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/Geyza1802/Educaplay-Plataforma-Educacional.git](https://github.com/Geyza1802/Educaplay-Plataforma-Educacional.git)
