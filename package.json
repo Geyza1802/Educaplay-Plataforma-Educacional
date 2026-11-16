@@ -1,0 +1,16 @@
+{
+  "name": "educaplay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EducaPlay - plataforma educacional gamificada de matematica (frontend Angular + backend Node.js)",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "start": "concurrently -n BACK,SITE -c blue,magenta \"npm start --prefix backend\" \"npm start --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

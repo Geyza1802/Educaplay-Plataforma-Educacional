@@ -1,0 +1,41 @@
+<div class="kawaii-wrapper">
+  <div class="floating-items">
+    <span class="kawaii-item cloud-1">☁️</span>
+    <span class="kawaii-item cloud-2">☁️</span>
+    <span class="kawaii-item star-1">✨</span>
+    <span class="kawaii-item star-2">⭐</span>
+    <span class="kawaii-item heart-1">💖</span>
+    <span class="kawaii-item heart-2">🌸</span>
+    <span class="kawaii-item bubble-1">🫧</span>
+    <span class="kawaii-item bubble-2">🫧</span>
+  </div>
+
+  <div class="auth-card">
+    <div class="avatar-header">
+      <div class="avatar-circle">👧</div>
+      <div class="avatar-circle">👦</div>
+    </div>
+
+    <h2>Perfil Infantil</h2>
+    <p class="subtitle-text">Digite o seu nome para começar a jogar!</p>
+
+    <div class="form-group">
+      <label>Nome da Criança</label>
+      <input 
+        type="text" 
+        [(ngModel)]="nomeCrianca" 
+        placeholder="Ex: Lucas" 
+      />
+    </div>
+
+    <button class="btn-comecar" (click)="aoIniciar()">
+      🚀 Começar Jogos!
+    </button>
+
+    <div class="back-container">
+      <a routerLink="/selecao-perfil" class="btn-back-pill">
+        ← Voltar à seleção de perfis
+      </a>
+    </div>
+  </div>
+</div>

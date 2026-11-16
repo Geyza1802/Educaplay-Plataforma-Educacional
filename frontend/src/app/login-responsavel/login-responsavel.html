@@ -1,0 +1,47 @@
+<div class="kawaii-wrapper">
+  <div class="floating-items">
+    <span class="kawaii-item cloud-1">☁️</span>
+    <span class="kawaii-item cloud-2">☁️</span>
+    <span class="kawaii-item star-1">✨</span>
+    <span class="kawaii-item star-2">⭐</span>
+    <span class="kawaii-item heart-1">💖</span>
+    <span class="kawaii-item heart-2">🌸</span>
+    <span class="kawaii-item bubble-1">🫧</span>
+    <span class="kawaii-item bubble-2">🫧</span>
+  </div>
+
+  <div class="auth-card">
+    <div class="avatar-header">
+      <div class="avatar-circle">🔐</div>
+      <div class="avatar-circle">👨‍👩‍👧</div>
+    </div>
+
+    <h2>Área do Responsável</h2>
+    <p class="subtitle-text">Acesse ao painel para acompanhar o progresso e gerir permissões.</p>
+
+    <div class="form-group">
+      <label>E-mail do Responsável</label>
+      <input type="email" [(ngModel)]="email" placeholder="exemplo@email.com" />
+    </div>
+
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" [(ngModel)]="senha" placeholder="••••••••" />
+    </div>
+
+    <div class="form-group">
+      <label>PIN de Segurança (4 dígitos)</label>
+      <input type="text" [(ngModel)]="pinSeguranca" placeholder="1234" maxlength="4" />
+    </div>
+
+    <button class="btn-painel" (click)="aoEntrar()">
+      🔓 Entrar no Painel
+    </button>
+
+    <div class="back-container">
+      <a routerLink="/selecao-perfil" class="btn-back-pill">
+        ← Voltar à seleção de perfis
+      </a>
+    </div>
+  </div>
+</div>

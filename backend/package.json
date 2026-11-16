@@ -1,0 +1,16 @@
+{
+  "name": "educaplay-backend",
+  "version": "1.0.0",
+  "description": "API do EducaPlay (versão 1.0)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}

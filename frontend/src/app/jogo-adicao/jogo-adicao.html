@@ -1,0 +1,64 @@
+<div class="session-container">
+  <div class="profile-card-wrapper jogo-card">
+
+    <h2>Jogo da Adição 🌟</h2>
+
+    <app-mascote
+      [resultado]="resultado()"
+      [sequencia]="sequencia()"
+      [nome]="nomeCrianca()" />
+
+    <p class="chamada">Qual é o resultado?</p>
+
+    <div class="placar">
+      <span class="placar-item nivel">🏅 Nível {{ nivel() }} · {{ nomeNivel() }}</span>
+      <span class="placar-item acertos">⭐ Acertos: {{ acertos() }}</span>
+      <span class="placar-item erros">💭 Tentativas erradas: {{ erros() }}</span>
+    </div>
+
+    <div class="conta">
+      <app-simbolo [valor]="numeroA()" [tamanho]="80" />
+      <app-simbolo valor="+" [tamanho]="60" />
+      <app-simbolo [valor]="numeroB()" [tamanho]="80" />
+      <app-simbolo valor="=" [tamanho]="60" />
+
+      @if (resultado() !== null) {
+        <app-simbolo [valor]="respostaCerta()" [tamanho]="80" />
+      } @else {
+        <span class="interrogacao">?</span>
+      }
+    </div>
+
+    <div class="opcoes">
+      @for (op of opcoes(); track op) {
+        <button
+          type="button"
+          class="opcao"
+          [disabled]="resultado() !== null"
+          [class.certa]="resultado() !== null && op === respostaCerta()"
+          [class.errada]="resultado() === 'errou' && op === respostaEscolhida()"
+          (click)="responder(op)">
+          <app-simbolo [valor]="op" [tamanho]="56" />
+        </button>
+      }
+    </div>
+
+    @if (resultado() === 'acertou') {
+      <p class="feedback bom">+10 pontos ⭐</p>
+    }
+    @if (resultado() === 'errou') {
+      <p class="feedback tente">A resposta certa é {{ respostaCerta() }}. Vamos de novo!</p>
+    }
+    @if (subiuDeNivel()) {
+      <p class="feedback subiu">🎉 Você subiu para o nível {{ nivel() }}!</p>
+    }
+    @if (aviso()) {
+      <p class="aviso">{{ aviso() }}</p>
+    }
+
+    <div class="back-container">
+      <a routerLink="/escolher-jogo" class="btn-back-pill">← Escolher outro jogo</a>
+    </div>
+
+  </div>
+</div>

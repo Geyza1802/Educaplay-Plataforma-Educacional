@@ -1,0 +1,35 @@
+<div class="kawaii-wrapper">
+ 
+  <div class="white-overlay" [ngClass]="{'active': isExpanding}"></div>
+
+
+  <div class="floating-items">
+    <span class="kawaii-item cloud-1">☁️</span>
+    <span class="kawaii-item cloud-2">☁️</span>
+    <span class="kawaii-item star-1">✨</span>
+    <span class="kawaii-item star-2">⭐</span>
+    <span class="kawaii-item heart-1">💖</span>
+    <span class="kawaii-item heart-2">🌸</span>
+    <span class="kawaii-item bubble-1">🫧</span>
+    <span class="kawaii-item bubble-2">🫧</span>
+  </div>
+
+
+  <div class="kawaii-card" [ngClass]="{'fade-out': isExpanding}">
+    <span class="card-sparkle top-left">✨</span>
+    <span class="card-sparkle top-right">🌸</span>
+
+    <div class="logo-area">
+      <div class="logo-container" [ngClass]="{'expand-logo': isExpanding}">
+        <img src="logo_educaplay.png" alt="EducaPlay Logo" class="logo-img-animated">
+      </div>
+
+      <h2 class="welcome-title">Bem-vindo(a)! 🌸</h2>
+      <p class="subtitle">Onde a matemática vira brincadeira! ✨</p>
+    </div>
+
+    <button class="btn-iniciar" (click)="iniciarSessao()">
+      <span class="btn-icon">🎮</span> INICIAR <span class="btn-sparkle">✨</span>
+    </button>
+  </div>
+</div>

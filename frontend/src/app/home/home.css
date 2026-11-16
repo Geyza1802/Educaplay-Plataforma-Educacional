@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+.kawaii-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e6f7ff, #ffe3ee, #dff9fb, #eaf0ff);
+  background-size: 300% 300%;
+  animation: kawaiiGradient 12s ease infinite;
+}
+
+
+.white-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.white-overlay.active {
+  opacity: 1;
+}
+
+@keyframes kawaiiGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.kawaii-item {
+  position: absolute;
+  user-select: none;
+  opacity: 0.65;
+  filter: drop-shadow(0 2px 4px rgba(84, 131, 252, 0.35));
+  animation: floatKawaii 6s ease-in-out infinite alternate;
+}
+
+.cloud-1 { top: 12%; left: 10%; font-size: 3rem; animation-duration: 7s; }
+.cloud-2 { bottom: 15%; right: 12%; font-size: 3.5rem; animation-duration: 9s; }
+.star-1 { top: 22%; right: 20%; font-size: 2rem; animation-duration: 5s; }
+.star-2 { bottom: 25%; left: 15%; font-size: 2.2rem; animation-duration: 6.5s; }
+.heart-1 { top: 60%; left: 8%; font-size: 2.2rem; animation-duration: 8s; }
+.heart-2 { top: 18%; left: 30%; font-size: 1.8rem; animation-duration: 5.5s; }
+.bubble-1 { top: 75%; right: 25%; font-size: 2.5rem; animation-duration: 7.5s; }
+.bubble-2 { top: 35%; right: 8%; font-size: 2rem; animation-duration: 6s; }
+
+@keyframes floatKawaii {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-18px) rotate(4deg); }
+}
+
+
+.kawaii-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 40px 50px;
+  border-radius: 35px;
+  box-shadow: 0 15px 35px rgba(40, 80, 255, 0.18),
+              0 0 0 6px rgba(255, 255, 255, 0.7);
+  text-align: center;
+  max-width: 580px;
+  width: 85%;
+  border: 3px solid #bfe9f7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.kawaii-card.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.card-sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: pulseSparkle 2s ease-in-out infinite;
+}
+
+.top-left { top: -12px; left: -10px; }
+.top-right { top: -12px; right: -10px; }
+
+@keyframes pulseSparkle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 150;
+  position: relative;
+}
+
+.logo-container.expand-logo {
+  transform: scale(12);
+  opacity: 0.95;
+}
+
+.logo-img-animated {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(40, 80, 255, 0.22));
+  animation: logoFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes logoFloat {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.welcome-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #0a4da8;
+  margin: 12px 0 4px 0;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  color: #4a3636;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.btn-iniciar {
+  background: linear-gradient(135deg, #2850ff, #5483fc);
+  color: #ffffff;
+  border: none;
+  padding: 14px 38px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(40, 80, 255, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-iniciar:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 25px rgba(40, 80, 255, 0.55);
+  background: linear-gradient(135deg, #0a4da8, #2850ff);
+}

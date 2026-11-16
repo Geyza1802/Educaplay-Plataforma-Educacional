@@ -1,0 +1,80 @@
+<div class="kawaii-wrapper">
+  <div class="floating-items">
+    <span class="kawaii-item cloud-1">☁️</span>
+    <span class="kawaii-item cloud-2">☁️</span>
+    <span class="kawaii-item star-1">✨</span>
+    <span class="kawaii-item star-2">⭐</span>
+    <span class="kawaii-item heart-1">💖</span>
+    <span class="kawaii-item heart-2">🌸</span>
+    <span class="kawaii-item bubble-1">🫧</span>
+    <span class="kawaii-item bubble-2">🫧</span>
+  </div>
+
+  <div class="report-wrapper">
+    <div class="header-section">
+      <div class="sparkle-icons">⭐ 💖 ✨ 🌸</div>
+      <h2>📊 Relatório de Sessão Detalhado</h2>
+      @if (relatorio(); as r) {
+        <p>Acompanhamento do progresso e tempo de jogo de {{ r.nome }} ✨</p>
+      } @else {
+        <p>{{ mensagem() }}</p>
+      }
+    </div>
+
+    @if (relatorio(); as r) {
+      <div class="cards-grid">
+
+        <div class="report-card profile-info">
+          <div class="profile-avatar">
+            👑
+            <span class="level-badge">Nível {{ r.nivel }}</span>
+          </div>
+          <h3>{{ r.tituloNivel }}</h3>
+          <div class="star-pill">⭐ {{ r.estrelas }} Estrelas Acumuladas</div>
+          <div class="progress-bar-container">
+            <label>Progresso do Nível <span>{{ r.progressoNivelPct }}%</span></label>
+            <div class="progress-bar"><div class="fill" [style.width.%]="r.progressoNivelPct"></div></div>
+          </div>
+        </div>
+
+        <div class="report-card time-info">
+          <div class="card-icon">⏱️</div>
+          <h3>Tempo de Uso Diário</h3>
+          <div class="big-stat">{{ r.tempoHojeMin }} min <span>/ {{ r.limiteDiarioMin }} min máx.</span></div>
+          <div class="status-pill success">
+            @if (r.dentroDoLimite) {
+              ✅ Dentro do limite recomendado para hoje!
+            } @else {
+              ⏰ Limite de hoje atingido!
+            }
+          </div>
+        </div>
+
+        <div class="report-card performance-info">
+          <div class="card-icon">🎯</div>
+          <h3>Desempenho por Matéria</h3>
+          <ul class="stats-list">
+            @for (m of r.desempenho; track m.materia) {
+              <li>
+                <span>{{ icone(m.materia) }} {{ m.materia }}</span>
+                @if (m.bloqueado) {
+                  <strong class="locked">🔒 Bloqueado</strong>
+                } @else if (m.precisaoPct === null) {
+                  <strong>Sem dados</strong>
+                } @else {
+                  <strong>{{ m.precisaoPct }}% precisão</strong>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+
+    <div class="back-container">
+      <a routerLink="/selecao-perfil" class="btn-back-pill">
+        ← Voltar à seleção de perfis
+      </a>
+    </div>
+  </div>
+</div>

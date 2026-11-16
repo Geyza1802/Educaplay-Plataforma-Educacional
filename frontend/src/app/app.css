@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #ffe5ec 0%, #f0e6ff 35%, #e8f0fe 70%, #fff0f5 100%);
+  background-size: 300% 300%;
+  animation: kawaiiGradient 12s ease infinite;
+  overflow-x: hidden;
+}
+
+@keyframes kawaiiGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.audio-toggle-btn {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #f3d5e4;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(220, 180, 210, 0.35);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-toggle-btn:hover {
+  transform: scale(1.08);
+  background: #ffffff;
+}

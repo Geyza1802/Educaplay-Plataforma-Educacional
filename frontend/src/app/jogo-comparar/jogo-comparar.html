@@ -1,0 +1,70 @@
+<div class="session-container">
+  <div class="profile-card-wrapper jogo-card">
+
+    <h2>Jogo de Comparar ⚖️</h2>
+
+    <app-mascote
+      [resultado]="resultado()"
+      [sequencia]="sequencia()"
+      [nome]="nomeCrianca()" />
+
+    <p class="pergunta">{{ textoPergunta() }}</p>
+    <p class="dica">Se os dois forem iguais, toque no =</p>
+
+    <div class="placar">
+      <span class="placar-item nivel">🏅 Nível {{ nivel() }} · {{ nomeNivel() }}</span>
+      <span class="placar-item acertos">⭐ Acertos: {{ acertos() }}</span>
+      <span class="placar-item erros">💭 Tentativas erradas: {{ erros() }}</span>
+    </div>
+
+    <div class="comparar">
+      <button
+        type="button"
+        class="opcao"
+        [disabled]="resultado() !== null"
+        [class.certa]="resultado() !== null && respostaCerta() === 'esquerda'"
+        [class.errada]="resultado() === 'errou' && escolha() === 'esquerda'"
+        (click)="responder('esquerda')">
+        <app-simbolo [valor]="esquerda()" [tamanho]="80" />
+      </button>
+
+      <button
+        type="button"
+        class="opcao igual"
+        [disabled]="resultado() !== null"
+        [class.certa]="resultado() !== null && respostaCerta() === 'igual'"
+        [class.errada]="resultado() === 'errou' && escolha() === 'igual'"
+        (click)="responder('igual')">
+        <app-simbolo valor="=" [tamanho]="48" />
+      </button>
+
+      <button
+        type="button"
+        class="opcao"
+        [disabled]="resultado() !== null"
+        [class.certa]="resultado() !== null && respostaCerta() === 'direita'"
+        [class.errada]="resultado() === 'errou' && escolha() === 'direita'"
+        (click)="responder('direita')">
+        <app-simbolo [valor]="direita()" [tamanho]="80" />
+      </button>
+    </div>
+
+    @if (resultado() === 'acertou') {
+      <p class="feedback bom">+10 pontos ⭐</p>
+    }
+    @if (resultado() === 'errou') {
+      <p class="feedback tente">{{ textoCerto() }} Vamos de novo!</p>
+    }
+    @if (subiuDeNivel()) {
+      <p class="feedback subiu">🎉 Você subiu para o nível {{ nivel() }}!</p>
+    }
+    @if (aviso()) {
+      <p class="aviso">{{ aviso() }}</p>
+    }
+
+    <div class="back-container">
+      <a routerLink="/escolher-jogo" class="btn-back-pill">← Escolher outro jogo</a>
+    </div>
+
+  </div>
+</div>
