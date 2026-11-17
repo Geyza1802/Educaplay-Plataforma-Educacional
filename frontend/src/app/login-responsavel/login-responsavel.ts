@@ -30,7 +30,7 @@ export class LoginResponsavelComponent {
     this.authService.autenticarResponsavel(this.email, this.senha, this.pinSeguranca).subscribe({
       next: () => {
         alert('Acesso concedido com sucesso!');
-        this.router.navigate(['/registro-sessao']);
+        this.router.navigate(['/minhas-criancas']);
       },
       error: (erro: HttpErrorResponse) => {
         if (erro.status === 0) {

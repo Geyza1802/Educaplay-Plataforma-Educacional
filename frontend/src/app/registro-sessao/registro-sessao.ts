@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { RelatorioService } from '../services/relatorio.service';
 import { Relatorio } from '../models/relatorio.model';
@@ -17,29 +17,34 @@ export class RegistroSessaoComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private relatorioService: RelatorioService
+    private relatorioService: RelatorioService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const crianca = this.authService.getPerfilInfantilAtual();
     const responsavel = this.authService.getResponsavelAtual();
-
-    if (crianca) {
-      this.carregar(crianca.idPerfil);
-    } else if (responsavel) {
-      this.relatorioService.listarPerfis(responsavel.idResponsavel).subscribe({
-        next: perfis => {
-          if (perfis.length > 0) {
-            this.carregar(perfis[0].idPerfil);
-          } else {
-            this.mensagem.set('Nenhuma criança cadastrada ainda.');
-          }
-        },
-        error: () => this.mensagem.set('Não consegui falar com o servidor. Verifique se o backend está ligado.')
-      });
-    } else {
-      this.mensagem.set('Entre como criança ou como responsável para ver o relatório.');
+    if (!responsavel) {
+      this.mensagem.set('Entre como responsável para ver o relatório.');
+      return;
     }
+
+    // se veio da lista "Minhas crianças", mostra a criança escolhida
+    const escolhida = Number(this.route.snapshot.queryParamMap.get('crianca'));
+    if (escolhida) {
+      this.carregar(escolhida);
+      return;
+    }
+
+    this.relatorioService.listarPerfis(responsavel.idResponsavel).subscribe({
+      next: perfis => {
+        if (perfis.length > 0) {
+          this.carregar(perfis[0].idPerfil);
+        } else {
+          this.mensagem.set('Nenhuma criança cadastrada ainda.');
+        }
+      },
+      error: () => this.mensagem.set('Não consegui falar com o servidor. Verifique se o backend está ligado.')
+    });
   }
 
   private carregar(idPerfil: number): void {

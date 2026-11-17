@@ -2,6 +2,13 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const db = require('./db');
+const {
+  criarToken,
+  exigirLogin,
+  apenasResponsavelDono,
+  podeAcessarPerfil,
+  acessoAoPerfil
+} = require('./auth');
 
 const app = express();
 app.use(cors({ origin: /^http:\/\/(localhost|127\.0\.0\.1):\d+$/ }));
@@ -15,6 +22,11 @@ app.use((req, res, next) => {
 const LIMITE_DIARIO_SEG = 40 * 60;
 
 const OPERACOES_VALIDAS = ['adicao', 'subtracao', 'multiplicacao', 'divisao', 'comparacao'];
+
+// criança: só o próprio perfil | responsável: crianças dele
+const acessoCriancaOuDono = acessoAoPerfil(db, false);
+// somente o responsável dono da criança (relatório e histórico)
+const acessoSoDono = acessoAoPerfil(db, true);
 
 function tempoUsadoHoje(idPerfil, idSessaoAtual) {
   const linha = db
@@ -90,7 +102,8 @@ app.post('/api/responsaveis/login', (req, res) => {
   res.json({
     idResponsavel: responsavel.id_responsavel,
     nome: responsavel.nome,
-    email: responsavel.email
+    email: responsavel.email,
+    token: criarToken('responsavel', responsavel.id_responsavel)
   });
 });
 
@@ -124,12 +137,13 @@ app.post('/api/perfis/entrar', (req, res) => {
     idPerfil: perfil.id_perfil,
     nome: perfil.nome,
     faixaEtaria: perfil.faixa_etaria,
-    saldoEstrelas: perfil.saldo_estrelas
+    saldoEstrelas: perfil.saldo_estrelas,
+    token: criarToken('crianca', perfil.id_perfil)
   });
 });
 
 
-app.post('/api/sessoes', (req, res) => {
+app.post('/api/sessoes', exigirLogin, (req, res) => {
   const idPerfil = Number(req.body && req.body.idPerfil);
 
   const perfil = db
@@ -138,6 +152,10 @@ app.post('/api/sessoes', (req, res) => {
 
   if (!perfil) {
     return res.status(404).json({ erro: 'Perfil não encontrado.' });
+  }
+
+  if (!podeAcessarPerfil(db, req.usuario, idPerfil, false)) {
+    return res.status(403).json({ erro: 'Você não tem acesso a esta criança.' });
   }
 
   const resultado = db
@@ -151,13 +169,17 @@ app.post('/api/sessoes', (req, res) => {
   });
 });
 
-app.put('/api/sessoes/:id', (req, res) => {
+app.put('/api/sessoes/:id', exigirLogin, (req, res) => {
   const sessao = db
     .prepare('SELECT * FROM registro_sessao WHERE id_sessao = ?')
     .get(req.params.id);
 
   if (!sessao) {
     return res.status(404).json({ erro: 'Sessão não encontrada.' });
+  }
+
+  if (!podeAcessarPerfil(db, req.usuario, sessao.id_perfil, false)) {
+    return res.status(403).json({ erro: 'Você não tem acesso a esta sessão.' });
   }
 
   const enviado = Math.floor(Number(req.body && req.body.tempoUtilizadoSeg) || 0);
@@ -179,7 +201,7 @@ app.put('/api/sessoes/:id', (req, res) => {
 });
 
 
-app.post('/api/perfis/:id/desafios', (req, res) => {
+app.post('/api/perfis/:id/desafios', exigirLogin, acessoCriancaOuDono, (req, res) => {
   const idPerfil = Number(req.params.id);
   const { operacao, acertou, pontos } = req.body;
 
@@ -222,7 +244,7 @@ app.post('/api/perfis/:id/desafios', (req, res) => {
 });
 
 
-app.get('/api/perfis/:id/progresso', (req, res) => {
+app.get('/api/perfis/:id/progresso', exigirLogin, acessoCriancaOuDono, (req, res) => {
   const idPerfil = Number(req.params.id);
 
   const perfil = db.prepare('SELECT 1 FROM perfil_infantil WHERE id_perfil = ?').get(idPerfil);
@@ -246,7 +268,7 @@ app.get('/api/perfis/:id/progresso', (req, res) => {
 });
 
 
-app.get('/api/responsaveis/:id/perfis', (req, res) => {
+app.get('/api/responsaveis/:id/perfis', exigirLogin, apenasResponsavelDono, (req, res) => {
   const perfis = db
     .prepare('SELECT * FROM perfil_infantil WHERE id_responsavel = ? ORDER BY id_perfil')
     .all(Number(req.params.id));
@@ -260,6 +282,47 @@ app.get('/api/responsaveis/:id/perfis', (req, res) => {
 });
 
 
+// Cadastro de uma criança feito pelo responsável
+app.post('/api/responsaveis/:id/perfis', exigirLogin, apenasResponsavelDono, (req, res) => {
+  const idResponsavel = Number(req.params.id);
+  const nome = ((req.body && req.body.nome) || '').trim();
+
+  if (!nome || nome.length > 30) {
+    return res.status(400).json({ erro: 'Informe o nome da criança (até 30 letras).' });
+  }
+
+  const responsavel = db
+    .prepare('SELECT 1 FROM responsavel WHERE id_responsavel = ?')
+    .get(idResponsavel);
+  if (!responsavel) {
+    return res.status(404).json({ erro: 'Responsável não encontrado.' });
+  }
+
+  // a criança entra só pelo nome, então dois nomes iguais se misturariam
+  const jaExiste = db
+    .prepare('SELECT 1 FROM perfil_infantil WHERE lower(nome) = lower(?)')
+    .get(nome);
+  if (jaExiste) {
+    return res.status(409).json({ erro: 'Já existe uma criança com esse nome. Escolha outro nome.' });
+  }
+
+  const resultado = db
+    .prepare('INSERT INTO perfil_infantil (id_responsavel, nome) VALUES (?, ?)')
+    .run(idResponsavel, nome);
+
+  const perfil = db
+    .prepare('SELECT * FROM perfil_infantil WHERE id_perfil = ?')
+    .get(resultado.lastInsertRowid);
+
+  res.status(201).json({
+    idPerfil: perfil.id_perfil,
+    nome: perfil.nome,
+    faixaEtaria: perfil.faixa_etaria,
+    saldoEstrelas: perfil.saldo_estrelas
+  });
+});
+
+
 function precisaoDe(idPerfil, operacao) {
   const t = db
     .prepare('SELECT COUNT(*) AS total, COALESCE(SUM(acertou), 0) AS acertos FROM desafio WHERE id_perfil = ? AND operacao = ?')
@@ -268,7 +331,7 @@ function precisaoDe(idPerfil, operacao) {
 }
 
 
-app.get('/api/perfis/:id/relatorio', (req, res) => {
+app.get('/api/perfis/:id/relatorio', exigirLogin, acessoSoDono, (req, res) => {
   const idPerfil = Number(req.params.id);
 
   const perfil = db.prepare('SELECT * FROM perfil_infantil WHERE id_perfil = ?').get(idPerfil);
@@ -301,7 +364,7 @@ app.get('/api/perfis/:id/relatorio', (req, res) => {
 
 
 // Histórico dos últimos 7 dias (respostas por dia) e das últimas sessões de jogo
-app.get('/api/perfis/:id/historico', (req, res) => {
+app.get('/api/perfis/:id/historico', exigirLogin, acessoSoDono, (req, res) => {
   const idPerfil = Number(req.params.id);
 
   const perfil = db.prepare('SELECT 1 FROM perfil_infantil WHERE id_perfil = ?').get(idPerfil);
