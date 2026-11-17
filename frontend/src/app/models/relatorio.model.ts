@@ -1,4 +1,4 @@
-export interface DesempenhoMateria {
+﻿export interface DesempenhoMateria {
   materia: string;
   precisaoPct: number | null;
   bloqueado: boolean;
@@ -14,9 +14,4 @@ export interface Relatorio {
   limiteDiarioMin: number;
   dentroDoLimite: boolean;
   desempenho: DesempenhoMateria[];
-}
-
-export interface PerfilResumo {
-  idPerfil: number;
-  nome: string;
 }

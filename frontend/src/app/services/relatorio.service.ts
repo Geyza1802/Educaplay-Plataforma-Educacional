@@ -1,33 +1,27 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from './api.config';
+import { Relatorio } from '../models/relatorio.model';
 
-export interface DiaHistorico {
-  data: string;
-  total: number;
-  acertos: number;
-  pontos: number;
-  precisaoPct: number | null;
-}
-
-export interface SessaoHistorico {
-  inicio: string;
-  tempoMin: number;
-}
-
-export interface Historico {
-  dias: DiaHistorico[];
-  sessoes: SessaoHistorico[];
+export interface PerfilResumo {
+  idPerfil: number;
+  nome: string;
+  faixaEtaria: string;
+  saldoEstrelas: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class HistoricoService {
+export class RelatorioService {
   constructor(private http: HttpClient) {}
 
-  buscarHistorico(idPerfil: number): Observable<Historico> {
-    return this.http.get<Historico>(`${API_URL}/perfis/${idPerfil}/historico`);
+  listarPerfis(idResponsavel: number): Observable<PerfilResumo[]> {
+    return this.http.get<PerfilResumo[]>(`${API_URL}/responsaveis/${idResponsavel}/perfis`);
+  }
+
+  buscarRelatorio(idPerfil: number): Observable<Relatorio> {
+    return this.http.get<Relatorio>(`${API_URL}/perfis/${idPerfil}/relatorio`);
   }
 }
