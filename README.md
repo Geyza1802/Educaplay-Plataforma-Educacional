@@ -111,8 +111,8 @@ Tabelas: `responsavel`, `perfil_infantil`, `registro_sessao`, `progresso_matemat
 | Controle de tempo e limite diário | ✅ Pronto |
 | Registro de desafios, níveis e estrelas | ✅ Pronto (backend) |
 | Relatório com dados reais do banco | ✅ Pronto |
-| Jogos de adição, subtração e geometria | 🚧 Em desenvolvimento |
-| Gráficos e histórico de partidas | 🔜 Planejado |
-| Tela de cadastro de crianças | 🔜 Planejado |
-| Autenticação por token nas rotas do relatório | 🔜 Planejado |
-| Manter o login após recarregar a página | 🔜 Planejado |
+| Jogos de adição, subtração e geometria | ✅ Pronto |
+| Gráficos e histórico de partidas | ✅ Pronto |
+| Tela de cadastro de crianças | ✅ Pronto |
+| Autenticação por token nas rotas do relatório | ✅ Pronto |
+| Manter o login após recarregar a página | ✅ Pronto |
