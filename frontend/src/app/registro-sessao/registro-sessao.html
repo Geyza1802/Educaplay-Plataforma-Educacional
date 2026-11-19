@@ -69,11 +69,61 @@
           </ul>
         </div>
       </div>
+
+      <div class="historico-wrap">
+        <div class="report-card historico-card">
+          <div class="card-icon">📈</div>
+          <h3>Últimos 7 dias</h3>
+
+          @if (historicoErro()) {
+            <p class="vazio">Não consegui carregar o histórico agora. 😕</p>
+          } @else if (historico(); as h) {
+            @if (!temDados()) {
+              <p class="vazio">Ainda não há respostas nos últimos 7 dias. Quando {{ r.nome }} jogar, o gráfico aparece aqui! 🌱</p>
+            } @else {
+              <div class="legenda">
+                <span class="l-boa">70% ou mais</span>
+                <span class="l-media">40 a 69%</span>
+                <span class="l-baixa">menos de 40%</span>
+              </div>
+              <p class="data">A altura da barra mostra quantas respostas foram dadas no dia.</p>
+
+              <div class="grafico">
+                @for (b of barras(); track b.data) {
+                  <div class="coluna">
+                    <span class="valor">{{ b.total > 0 ? b.total : '' }}</span>
+                    <div class="area-barra">
+                      <div class="barra" [class]="'barra ' + b.classe" [style.height.%]="b.altura"></div>
+                    </div>
+                    <span class="precisao">{{ b.precisaoPct !== null ? b.precisaoPct + '%' : '–' }}</span>
+                    <span class="dia">{{ b.dia }}</span>
+                    <span class="data">{{ b.data }}</span>
+                  </div>
+                }
+              </div>
+
+              @if (h.sessoes.length > 0) {
+                <h3 class="subtitulo">Últimas sessões de jogo</h3>
+                <ul class="sessoes">
+                  @for (s of h.sessoes; track s.inicio) {
+                    <li>
+                      <span>🎮 {{ formatarInicio(s.inicio) }}</span>
+                      <strong>{{ s.tempoMin }} min</strong>
+                    </li>
+                  }
+                </ul>
+              }
+            }
+          } @else {
+            <p class="vazio">Carregando o histórico...</p>
+          }
+        </div>
+      </div>
     }
 
-          <a routerLink="/minhas-criancas" class="btn-back-pill">
+    <div class="back-container">
+      <a routerLink="/minhas-criancas" class="btn-back-pill">
         ← Voltar às minhas crianças
-      </a>
       </a>
     </div>
   </div>
