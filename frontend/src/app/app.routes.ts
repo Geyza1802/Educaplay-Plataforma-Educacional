@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home';
 import { SelecaoPerfilComponent } from './selecao-perfil/selecao-perfil';
 import { LoginInfantilComponent } from './login-infantil/login-infantil';
 import { LoginResponsavelComponent } from './login-responsavel/login-responsavel';
+import { CadastroResponsavelComponent } from './cadastro-responsavel/cadastro-responsavel';
 import { RegistroSessaoComponent } from './registro-sessao/registro-sessao';
 import { JogoAdicaoComponent } from './jogo-adicao/jogo-adicao';
 import { EscolherJogoComponent } from './escolher-jogo/escolher-jogo';
@@ -13,12 +14,12 @@ import { MinhasCriancasComponent } from './minhas-criancas/minhas-criancas';
 import { responsavelGuard } from './services/responsavel.guard';
 
 export const routes: Routes = [
-
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'selecao-perfil', component: SelecaoPerfilComponent },
   { path: 'login-infantil', component: LoginInfantilComponent },
   { path: 'login-responsavel', component: LoginResponsavelComponent },
+  { path: 'cadastro-responsavel', component: CadastroResponsavelComponent },
   { path: 'minhas-criancas', component: MinhasCriancasComponent, canActivate: [responsavelGuard] },
   { path: 'registro-sessao', component: RegistroSessaoComponent, canActivate: [responsavelGuard] },
   { path: 'escolher-jogo', component: EscolherJogoComponent },

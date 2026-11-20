@@ -4,6 +4,14 @@
   bloqueado: boolean;
 }
 
+export interface Conquista {
+  id: string;
+  titulo: string;
+  descricao: string;
+  icone: string;
+  desbloqueada: boolean;
+}
+
 export interface Relatorio {
   nome: string;
   nivel: number;
@@ -14,4 +22,5 @@ export interface Relatorio {
   limiteDiarioMin: number;
   dentroDoLimite: boolean;
   desempenho: DesempenhoMateria[];
+  conquistas: Conquista[];
 }

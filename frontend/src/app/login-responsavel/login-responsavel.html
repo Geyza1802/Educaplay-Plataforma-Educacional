@@ -34,9 +34,17 @@
       <input type="text" [(ngModel)]="pinSeguranca" placeholder="1234" maxlength="4" />
     </div>
 
-    <button class="btn-painel" (click)="aoEntrar()">
-      🔓 Entrar no Painel
+    @if (erro()) {
+      <p class="msg-erro">{{ erro() }}</p>
+    }
+
+    <button type="button" class="btn-painel" (click)="aoEntrar()" [disabled]="carregando()">
+      {{ carregando() ? 'Entrando...' : '🔓 Entrar no Painel' }}
     </button>
+
+    <p class="link-cadastro">
+      Não tem conta? <a routerLink="/cadastro-responsavel">Cadastre-se</a>
+    </p>
 
     <div class="back-container">
       <a routerLink="/selecao-perfil" class="btn-back-pill">

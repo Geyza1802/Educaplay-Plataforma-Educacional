@@ -1,43 +1,46 @@
-import { Component } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-responsavel',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login-responsavel.html',
   styleUrl: './login-responsavel.css'
 })
 export class LoginResponsavelComponent {
-  email: string = '';
-  senha: string = '';
-  pinSeguranca: string = '';
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  email = '';
+  senha = '';
+  pinSeguranca = '';
+  erro = signal('');
+  carregando = signal(false);
 
   aoEntrar() {
-    if (!this.email || !this.senha || !this.pinSeguranca) {
-      alert('Por favor, preencha todos os campos!');
+    this.erro.set('');
+
+    if (!this.email.trim() || !this.senha || !this.pinSeguranca.trim()) {
+      this.erro.set('Preencha e-mail, senha e PIN de segurança.');
       return;
     }
 
-    this.authService.autenticarResponsavel(this.email, this.senha, this.pinSeguranca).subscribe({
+    this.carregando.set(true);
+    this.auth.autenticarResponsavel(
+      this.email.trim(),
+      this.senha,
+      this.pinSeguranca.trim()
+    ).subscribe({
       next: () => {
-        alert('Acesso concedido com sucesso!');
+        this.carregando.set(false);
         this.router.navigate(['/minhas-criancas']);
       },
-      error: (erro: HttpErrorResponse) => {
-        if (erro.status === 0) {
-          alert('Não consegui falar com o servidor. Verifique se o backend está ligado.');
-        } else {
-          alert(erro.error?.erro ?? 'Não foi possível entrar. Tente de novo.');
-        }
+      error: (err) => {
+        this.carregando.set(false);
+        this.erro.set(err.error?.erro || 'E-mail, senha ou PIN incorretos.');
       }
     });
   }

@@ -204,6 +204,14 @@ export class RegistroSessaoComponent implements OnInit {
   historicoErro = signal(false);
   mensagem = signal('Carregando o relatório...');
 
+rolarMedalhas(container: HTMLElement, direcao: number) {
+  container.scrollBy({
+    left: direcao * 330,
+    behavior: 'smooth'
+  });
+}
+
+
   temDados = computed(() => {
     const h = this.historico();
     return h ? h.dias.some(d => d.total > 0) : false;
@@ -292,3 +300,4 @@ export class RegistroSessaoComponent implements OnInit {
     return '📐';
   }
 }
+

@@ -1,43 +1,49 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { SessaoService } from '../services/sessao.service';
 
 @Component({
   selector: 'app-login-infantil',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login-infantil.html',
   styleUrl: './login-infantil.css'
 })
 export class LoginInfantilComponent {
-  nomeCrianca: string = '';
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(
-    private authService: AuthService,
-    private sessaoService: SessaoService,
-    private router: Router
-  ) {}
+  nome = '';
+  codigoFamilia = '';
+  erro = signal('');
+  carregando = signal(false);
 
-  aoIniciar() {
-    if (!this.nomeCrianca.trim()) {
-      alert('Escreva o seu nome para jogarmos!');
+  entrar() {
+    this.erro.set('');
+
+    if (this.nome.trim().length < 2) {
+      this.erro.set('Digite o nome da criança.');
       return;
     }
 
-    this.authService.entrarComoCrianca(this.nomeCrianca.trim()).subscribe({
+    if (this.codigoFamilia.trim().length !== 6) {
+      this.erro.set('Informe o Código da Família com 6 caracteres.');
+      return;
+    }
+
+    this.carregando.set(true);
+    this.auth.entrarComoCrianca(
+      this.nome.trim(),
+      this.codigoFamilia.trim().toUpperCase()
+    ).subscribe({
       next: () => {
-        this.sessaoService.iniciarSessao();
+        this.carregando.set(false);
         this.router.navigate(['/escolher-jogo']);
       },
-      error: (erro: HttpErrorResponse) => {
-        if (erro.status === 0) {
-          alert('Não consegui falar com o servidor. Verifique se o backend está ligado.');
-        } else {
-          alert(erro.error?.erro ?? 'Não foi possível entrar. Tente de novo.');
-        }
+      error: (err) => {
+        this.carregando.set(false);
+        this.erro.set(err.error?.erro || 'Nome ou Código da Família inválidos.');
       }
     });
   }

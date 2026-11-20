@@ -37,6 +37,8 @@
           </div>
         </div>
 
+
+
         <div class="report-card time-info">
           <div class="card-icon">⏱️</div>
           <h3>Tempo de Uso Diário</h3>
@@ -69,6 +71,42 @@
           </ul>
         </div>
       </div>
+<div class="medalhas-wrap">
+        <div class="report-card medalhas-card">
+          <div class="card-icon">🏆</div>
+          <h3>Medalhas e Conquistas</h3>
+
+          <div class="carrossel-container">
+            <button
+              type="button"
+              class="btn-seta"
+              aria-label="Anterior"
+              (click)="rolarMedalhas(carrosselMedalhas, -1)">◀</button>
+
+            <div class="grade-medalhas" #carrosselMedalhas>
+              @for (m of r.conquistas; track m.id) {
+                <div class="item-medalha" [class.bloqueada]="!m.desbloqueada">
+                  <span class="icone-medalha">{{ m.icone }}</span>
+                  <div class="info-medalha">
+                    <strong>{{ m.titulo }}</strong>
+                    <p>{{ m.descricao }}</p>
+                    <span class="status-medalha">
+                      {{ m.desbloqueada ? '✅ Conquistada!' : '🔒 Bloqueada' }}
+                    </span>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <button
+              type="button"
+              class="btn-seta"
+              aria-label="Próximo"
+              (click)="rolarMedalhas(carrosselMedalhas, 1)">▶</button>
+          </div>
+        </div>
+      </div>
+
 
       <div class="historico-wrap">
         <div class="report-card historico-card">
